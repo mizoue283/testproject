@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
   <div class="center">
-    <h1>トップページ</h1>
+    <h1>初めまして！</h1>
     <p class="lead">Bootstrap4を使っています。</p>
   </div>
 </div><!-- /.container -->
@@ -10,8 +10,6 @@
 
          <!--blog -->
 <div class="container">
-<div class="row">
-<div class="col-md-6">
   <div class="center">
     <h1><a>Libra's Topic</a></h1>
       {% for post in posts %}
@@ -24,21 +22,5 @@
   <h1 class="btn btn-info"><a href="{% url 'blog:blog'%}">もっと見る</a></h1>
   </div>
 </div>
-<div class="col-md-6">
-<div class="center">
-    <h1><a>Tweet</a></h1>
-      {% for tweet in tweets %}
-    <div>
-        <p >time: {{ tweet.created_date }}</p>
-        <h3><a href="{% url 'testapp:user_post' id=tweet.userprofile_id %}">{{ tweet.userprofile.first_name }}</a></h3>
-        <p class="lead">{{ tweet.tweets}}</p>
-    </div>
-{% endfor %}
 
-  </div>
-
-
-</div>
-</div>
-</div>
 {% endblock %}

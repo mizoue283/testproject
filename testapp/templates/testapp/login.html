@@ -25,6 +25,16 @@
         <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'testapp:create' %}">
           会員登録
         </a>
+          <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'social:begin' 'twitter' %}">
+          Twitterログイン
+        </a>
+         <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'social:begin' 'facebook' %}">
+          Facebookログイン
+        </a>
+
+        <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'social:begin' "google-oauth2" %}">
+          Googleログイン
+        </a>
       </div>
     </div>
  

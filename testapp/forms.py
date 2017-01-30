@@ -9,23 +9,19 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = (
                   "username", "email", "password1", "password2",
-                  "first_name", "last_name",
+                  "first_name",
                   )
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['username'].widget.attrs['placeholder'] = 'ユーザ名'
+        self.fields['username'].widget.attrs['placeholder'] = 'ユーザID'
         
         self.fields['email'].widget.attrs['class'] = 'form-control'
         self.fields['email'].widget.attrs['placeholder'] = 'メールアドレス'
         
         self.fields['first_name'].widget.attrs['class'] = 'form-control'
-        self.fields['first_name'].widget.attrs['placeholder'] = '姓'
-        
-        self.fields['last_name'].widget.attrs['class'] = 'form-control'
-        self.fields['last_name'].widget.attrs['placeholder'] = '名'
-        
+        self.fields['first_name'].widget.attrs['placeholder'] = 'ニックネーム'
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['placeholder'] = 'パスワード'
         
@@ -38,7 +34,7 @@ class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['username'].widget.attrs['placeholder'] = 'ユーザ名'
+        self.fields['username'].widget.attrs['placeholder'] = 'ユーザID'
         
         self.fields['password'].widget.attrs['class'] = 'form-control'
         self.fields['password'].widget.attrs['placeholder'] = 'パスワード'

@@ -1,11 +1,23 @@
 {% extends "testapp/base.html" %}
 {% block content %}
-<div class="container">
+<!--ログインユーザが閲覧ユーザーIDが同じだった時、ログイン中のユーザー情報表示-->
+    {% if  user == users%}
+                <div class="container">
   <div class="center">
-    <h1>ユーザ情報</h1>
+    <h1>Mypage</h1>
     <p class="lead">ログイン中のユーザデータを表示します</p>
+      <div class="row">
+        <div class="col-md-6">
+            <p class="lead">follow</p>
+            <p class="lead">{{ follows_number}}</p>
+        </div>
+          <div class="col-md-6">
+            <p class="lead">follower</p>
+            <p class="lead">{{ followers_number}}</p>
+        </div>
+      </div>
   </div>
- 
+
   <table class="table">
     <thead class="thead-inverse">
       <tr>
@@ -29,15 +41,9 @@
         <td>デフォルトは空欄でもOK</td>
       </tr>
       <tr>
-        <td>姓</td>
+        <td>ニックネーム</td>
         <td>{% verbatim %} {{ user.first_name }} {% endverbatim %} </td>
         <td>{{ user.first_name }}</td>
-        <td>デフォルトは空欄でもOK</td>
-      </tr>
-      <tr>
-        <td>名</td>
-        <td>{% verbatim %} {{ user.last_name }} {% endverbatim %} </td>
-        <td>{{ user.last_name }}</td>
         <td>デフォルトは空欄でもOK</td>
       </tr>
       <tr>
@@ -54,6 +60,76 @@
       </tr>
     </tbody>
   </table>
- 
-</div><!-- /.container -->
+
+</div>
+        <!-- #ログインユーザー以外のユーザーIDをリクエストした時の表示-->
+{% else%}
+    <div class="container">
+  <div class="center">
+    <h1>ユーザ情報</h1>
+    <p class="lead">ユーザデータを表示します</p>
+       <div class="row">
+        <div class="col-md-6">
+            <p class="lead">follow</p>
+            <p class="lead">{{ follows_number}}</p>
+        </div>
+          <div class="col-md-6">
+            <p class="lead">follower</p>
+            <p class="lead">{{ followers_number}}</p>
+        </div>
+      </div>
+  </div>
+        <a target="_blank"
+    class="btn btn-info pull-right"
+    href="{% url 'testapp.views.user_follow' user_id=user.id  id=id %}">
+    Check It Out
+</a>
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>名前・説明</th>
+        <th>templateでの呼び出し方</th>
+        <th>ユーザのデータ</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ユーザ名</td>
+        <td>{% verbatim %} {{ user.username }} {% endverbatim %} </td>
+        <td>{{ users.username }}</td>
+        <td>必須</td>
+      </tr>
+      <tr>
+        <td>メール</td>
+        <td>{% verbatim %} {{ user.email }} {% endverbatim %} </td>
+        <td>{{ users.email }}</td>
+        <td>デフォルトは空欄でもOK</td>
+      </tr>
+      <tr>
+        <td>ニックネーム</td>
+        <td>{% verbatim %} {{ user.first_name }} {% endverbatim %} </td>
+        <td>{{ users.first_name }}</td>
+        <td>デフォルトは空欄でもOK</td>
+      </tr>
+      <tr>
+        <td>adminサイトにアクセスできるか</td>
+        <td>{% verbatim %} {{ user.is_staff }} {% endverbatim %} </td>
+        <td>{{ users.is_staff }}</td>
+        <td>デフォルトはFalse</td>
+      </tr>
+      <tr>
+        <td>アカウントが有効か（ログインできるか）</td>
+        <td>{% verbatim %} {{ user.is_active }} {% endverbatim %} </td>
+        <td>{{ users.is_active }}</td>
+        <td>デフォルトはTrue</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+
+    {% endif %}
 {% endblock %}

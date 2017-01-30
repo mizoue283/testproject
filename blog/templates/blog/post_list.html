@@ -1,0 +1,26 @@
+{% extends "testapp/base.html" %}
+{% block content %}
+
+     <!--blog -->
+<div class="container">
+  <div class="center">
+    <h1>Libra's Topic</h1>
+       {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+             <!--urlの時アプリ指定しないといけない -->
+            <h1><a href="{% url 'blog:blog_post' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|truncatewords_html:10}}</p>
+        </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

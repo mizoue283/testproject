@@ -12,7 +12,7 @@
  
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'testapp/css/main.css' %}">
- 
+
   </head>
   <body>
     <nav class="navbar navbar-dark bg-primary">
@@ -22,8 +22,8 @@
           
           {% if user.is_authenticated %}
           <div class="pull-sm-right">
-            <a class="nav-item nav-link" href="{% url 'testapp:mypage' %}">
-              ようこそ、{{ user.username }}！マイページへ
+            <a class="nav-item nav-link" href="{% url 'testapp:user_post' id=user.id %}">
+              ようこそ、{{ user.first_name }}！マイページへ
             </a>
             <a class="nav-item nav-link" href="{% url 'testapp:logout' %}">ログアウト</a>
           </div>
